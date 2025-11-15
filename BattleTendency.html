@@ -13,20 +13,20 @@
 body {
   margin: 0;
   font-family: "Trebuchet MS", sans-serif;
-  background: #1e311a; /* Military dark green */
+  background: #1e311a;
   color: #d4d4ff;
 }
 
 /* ---------- HEADER ---------- */
 header {
-  background: linear-gradient(90deg, #3d0066, #5a1e8a); /* deep purple */
+  background: linear-gradient(90deg, #3d0066, #5a1e8a);
   padding: 20px;
   text-align: center;
   color: white;
   font-size: 2rem;
   font-weight: bold;
   letter-spacing: 3px;
-  border-bottom: 4px solid #284022; /* dark green accent */
+  border-bottom: 4px solid #284022;
   text-shadow: 0 0 8px #000;
 }
 
@@ -48,6 +48,7 @@ header {
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
 #home-btn {
   padding: 10px 18px;
   background: linear-gradient(90deg, #3d0066, #5a1e8a);
@@ -57,7 +58,7 @@ header {
   border-radius: 6px;
   cursor: pointer;
   box-shadow: 0 0 10px #000;
-  margin-bottom: 20px;   /* spacing under header */
+  margin-bottom: 20px;
 }
 
 /* ---------- VOLUME CARD ---------- */
@@ -90,7 +91,7 @@ header {
   padding: 15px;
   text-align: center;
   font-size: 1.3rem;
-  color: #50a866; /* mint green highlight */
+  color: #50a866;
   text-shadow: 0 0 5px #3d0066;
 }
 
@@ -136,14 +137,11 @@ header {
 /* Tap zones */
 .nav-zone {
   position: absolute;
-  top: 0;
-  width: 50%;
-  height: 100%;
   top: 60px;
+  width: 50%;
   height: calc(100% - 60px);
   z-index: 1;
 }
-
 
 #prev-zone { left: 0; }
 #next-zone { right: 0; }
@@ -154,45 +152,39 @@ header {
 <header>JoJo’s Bizarre Adventure – Part 2: Battle Tendency</header>
 <br><br>
 <button id="home-btn" onclick="goHome()">🏠 Home</button>
+
 <div id="volume-list">
 
-  <!-- Volume 6 -->
   <div class="volume" onclick="openPDF('JoJo_s Bizzare Adventure - Part 2 - Volume 6 - JoJo Vs. the Ultimate Lifeform.pdf')">
     <img src="vol6cover.png" alt="Volume 6 Cover">
     <div class="volume-title">Battle Tendency – Volume 6</div>
   </div>
 
-  <!-- Volume 7 -->
   <div class="volume" onclick="openPDF('JoJo_s Bizzare Adventure - Part 2 - Volume 7 - The Red Stone of Aja.pdf')">
     <img src="vol7cover.png" alt="Volume 7 Cover">
     <div class="volume-title">Battle Tendency – Volume 7</div>
   </div>
 
-  <!-- Volume 8 -->
   <div class="volume" onclick="openPDF('JoJo_s Bizzare Adventure - Part 2 - Volume 8 - The Final Trial!.pdf')">
     <img src="vol8cover.png" alt="Volume 8 Cover">
     <div class="volume-title">Battle Tendency – Volume 8</div>
   </div>
 
-  <!-- Volume 9 -->
   <div class="volume" onclick="openPDF('JoJo_s Bizzare Adventure - Part 2 - Volume 9 - Rushing Towards the Cliff of Death.pdf')">
     <img src="vol9cover.png" alt="Volume 9 Cover">
     <div class="volume-title">Battle Tendency – Volume 9</div>
   </div>
 
-    <!-- Volume 10 -->
   <div class="volume" onclick="openPDF('JoJo_s Bizzare Adventure - Part 2 - Volume 10 - The Crimson Bubble.pdf')">
     <img src="vol10cover.png" alt="Volume 10 Cover">
     <div class="volume-title">Battle Tendency – Volume 10</div>
   </div>
 
-      <!-- Volume 11 -->
   <div class="volume" onclick="openPDF('JoJo_s Bizzare Adventure - Part 2 - Volume 11 - The Warrior Returning to the Wind.pdf')">
     <img src="vol11cover.png" alt="Volume 11 Cover">
     <div class="volume-title">Battle Tendency – Volume 11</div>
   </div>
 
-      <!-- Volume 12 -->
   <div class="volume" onclick="openPDF('JoJo_s Bizzare Adventure - Part 2 - Volume 12 - The Birth of the Ultimate Being!!.pdf')">
     <img src="vol12cover.png" alt="Volume 12 Cover">
     <div class="volume-title">Battle Tendency – Volume 12</div>
@@ -200,12 +192,15 @@ header {
 
 </div>
 
-<!-- PDF READER -->
+<!-- PDF VIEWER -->
 <div id="reader">
   <button id="back-btn" onclick="closePDF()">← Back</button>
+
   <canvas id="pdf-canvas"></canvas>
+
   <div id="prev-zone" class="nav-zone" onclick="prevPage()"></div>
   <div id="next-zone" class="nav-zone" onclick="nextPage()"></div>
+
   <div id="page-info"></div>
 </div>
 
@@ -229,11 +224,8 @@ async function openPDF(url) {
 
 function closePDF() {
   document.getElementById("reader").style.display = "none";
-  document.body.style.overflow = "auto"; // <-- FIX: restore scroll
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  pdfDoc = null;
+  document.body.style.overflow = "auto";
 }
-
 
 function renderPage(num) {
   pdfDoc.getPage(num).then(function(page) {
@@ -242,6 +234,7 @@ function renderPage(num) {
     canvas.width = viewport.width;
 
     page.render({ canvasContext: ctx, viewport });
+
     document.getElementById("page-info").innerText =
       `Page ${num} / ${pdfDoc.numPages}`;
   });
@@ -258,9 +251,13 @@ function nextPage() {
   pageNum++;
   renderPage(pageNum);
 }
+
 function goHome() {
   window.location.href = "https://penyu444.github.io/JojosBizarreAdventureStorage/JojosBizarreAdventure.html";
 }
+
+document.addEventListener("dragstart", (e) => e.preventDefault());
+document.addEventListener("contextmenu", (e) => e.preventDefault());
 </script>
 
 </body>
