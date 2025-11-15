@@ -48,6 +48,17 @@ header {
     grid-template-columns: repeat(3, 1fr);
   }
 }
+#home-btn {
+  padding: 10px 18px;
+  background: #3366ff;
+  color: white;
+  border: none;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 0 10px #000;
+  margin-bottom: 20px;   /* spacing under header */
+}
 
 /* ---------- VOLUME CARD ---------- */
 .volume {
@@ -58,6 +69,8 @@ header {
   cursor: pointer;
   transition: 0.3s ease;
   box-shadow: 0 0 12px rgba(90, 0, 181, 0.4);
+  -webkit-user-drag: none;
+  user-drag: none;
 }
 
 .volume:hover {
@@ -127,6 +140,7 @@ header {
   height: 100%;
 }
 
+
 #prev-zone { left: 0; }
 #next-zone { right: 0; }
 </style>
@@ -134,7 +148,8 @@ header {
 <body>
 
 <header>JoJo’s Bizarre Adventure – Part 2: Battle Tendency</header>
-
+<br><br>
+<button id="home-btn" onclick="goHome()">🏠 Home</button>
 <div id="volume-list">
 
   <!-- Volume 6 -->
@@ -243,6 +258,7 @@ function closePDF() {
   pdfDoc = null;
   document.title = "Yotsubato! Volumes";
 }
+
 </script>
 
 </body>
